@@ -1,6 +1,6 @@
 # SUNWORK — 황선미 포트폴리오
 
-2024년 Vite/HTML 포트폴리오를 Next.js App Router와 React로 옮긴 프로젝트입니다. 원본의 작업물, 이미지, 폰트와 시각 디자인을 유지합니다.
+웹 디자이너·웹 퍼블리셔의 취업·이직용 포트폴리오입니다. Next.js App Router와 React를 사용합니다. 아이보리·차콜·그린 컬러, 큰 타이포그래피, 짧은 모션으로 작업물을 보여줍니다.
 
 ## 실행
 
@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-브라우저에서 http://localhost:3000 을 엽니다.
+http://localhost:3000 에서 확인합니다.
 
 ```bash
 npm run build
@@ -20,28 +20,30 @@ npm start
 
 ## 구성
 
-- `app/page.jsx`: 홈 화면과 드래그 오브젝트
-- `app/work/page.jsx`: 웹/UI 작업물 11개
-- `app/about/page.jsx`: 소개, 경력, 스킬, 연락처
-- `app/view/page.jsx`: 디자인 작업물 갤러리와 이력서
-- `components/Header.jsx`: 공통 메뉴와 모바일 내비게이션
-- `components/PageEffects.jsx`: GSAP, Lenis, Splide, 드래그, 갤러리 동작과 정리
-- `app/globals.css`: 원본 스타일과 반응형/접근성 보완
-- `public/images`, `public/fonts`: 원본 정적 자산
+- `/`: 소개, 대표작 3개, 디자인·퍼블리싱 역량, Playground, 연락처
+- `/work`: 프로젝트 11개와 All / Web / UI·UX 필터
+- `/work/[slug]`: 프로젝트별 소개·작업 초점·구현 방식·원본 작업 링크
+- `/about`: 소개, 기존 자료 기반 경력·교육, 역량, 이력서 보기
+- `/view`: 디자인 작업물 8개와 유형별 필터, 확대 갤러리
+- `data/projects.js`: 프로젝트 설명, 링크, 이미지, 분류, 갤러리 데이터
+- `components`: 메뉴, 푸터, 프로젝트 카드, 필터, 갤러리, GSAP 모션
+- `app/globals.css`: 반응형 레이아웃과 공통 디자인 스타일
+- `public/images`, `public/fonts`: 기존 포트폴리오 자산
 
-기존 `/index.html`, `/work.html`, `/about.html`, `/view.html` 주소는 새 경로로 리디렉션됩니다.
+기존 HTML 주소는 새 경로로 리디렉션합니다. 브라우저의 모션 감소 설정을 존중하며, 메뉴와 갤러리는 키보드로 사용할 수 있습니다. 갤러리는 닫기 버튼·배경 클릭·Escape로 닫고, 좌우 화살표로 작업물을 전환합니다.
 
-PC Work 화면은 세로 스크롤에 따라 가로로 이동합니다. 모바일에서는 작업물을 세로로 나열하고 설명/링크를 항상 표시합니다. 갤러리는 이미지 클릭으로 열리며 닫기 버튼, 배경 클릭, Escape로 닫을 수 있습니다. 화면 이동 시 이벤트, 스크롤 애니메이션과 슬라이더를 정리합니다. 모션 감소 설정도 지원합니다.
+## 콘텐츠 업데이트
+
+프로젝트 정보는 `data/projects.js`에서 수정합니다. 새 프로젝트를 추가하면 Work 목록과 상세 페이지에 반영됩니다. 대표작은 홈에서 데이터의 앞 3개를 보여줍니다. 홈/Work의 전체 프로젝트 개수는 데이터에서 자동으로 계산합니다.
+
+기존 2024년 포트폴리오 설명을 바탕으로 작업 내용을 재구성했습니다. 프로젝트별 기여도, 실제 조사 과정, 수치 성과, 최신 경력은 임의로 만들지 않았습니다. 경력·교육은 원본에 있는 기간을 유지합니다.
 
 ## 배포
 
-일반적인 Next.js 호스팅 환경에서 `npm run build` 후 `npm start`로 실행하거나, GitHub 저장소를 Vercel에 연결할 수 있습니다. 공유 미리보기용 배포 주소는 `.env.example`을 참고하여 `NEXT_PUBLIC_SITE_URL`에 설정합니다.
+GitHub `main` 브랜치를 Vercel 프로젝트 `sunportfolio`에 연결했습니다.
 
-외부 작업물, Behance, Instagram 링크는 원본 주소를 유지하며 해당 서비스의 운영 여부에 따라 달라질 수 있습니다. 일부 웹폰트와 노이즈 텍스처는 원본 외부 URL을 사용합니다. 배포 전에 연락처와 이력서의 최신 여부 및 원본 이미지/폰트의 사용 권한을 확인하세요.
+배포 주소: https://sunportfolio-ten.vercel.app
 
-## 검증
+공유 미리보기 기준 주소는 `NEXT_PUBLIC_SITE_URL`로 변경할 수 있습니다. 기본값은 현재 배포 주소입니다. 이메일 복사는 보안 컨텍스트(HTTPS 또는 localhost)에서 동작하며, 사용할 수 없는 환경에서는 이메일 링크를 사용할 수 있습니다.
 
-- Next.js 프로덕션 빌드
-- 홈 / Work / About / View 페이지 렌더링
-- 모바일 메뉴 열기, 작업물 갤러리 열기/닫기
-- 페이지와 CSS에서 참조하는 로컬 이미지/폰트 존재 여부
+기존 외부 프로젝트 링크는 원본 주소를 유지합니다. 외부 사이트의 현재 운영 상태에 따라 접속 여부가 달라질 수 있습니다.
