@@ -24,7 +24,7 @@ export const metadata = {
 };
 export default function RootLayout({ children }) {
   return (
-    <html lang="ko">
+    <html lang="ko" data-scroll-behavior="smooth">
       <body>
         <a className="skip-link" href="#page-content">
           본문으로 이동

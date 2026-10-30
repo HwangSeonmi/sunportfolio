@@ -10,14 +10,16 @@ export default function PageEffects() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     gsap.registerPlugin(ScrollTrigger);
     const context = gsap.context(() => {
-      gsap.from(".hero-line > span", {
-        yPercent: 110,
-        rotate: 2,
-        duration: 1.05,
-        stagger: 0.12,
-        ease: "power4.out",
-        clearProps: "transform",
-      });
+      const headline = document.querySelectorAll(".hero-line > span");
+      if (headline.length)
+        gsap.from(headline, {
+          yPercent: 110,
+          rotate: 2,
+          duration: 1.05,
+          stagger: 0.12,
+          ease: "power4.out",
+          clearProps: "transform",
+        });
       gsap.utils.toArray("[data-reveal]").forEach((el) => {
         gsap.fromTo(
           el,
